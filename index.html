@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>情人节快乐！</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-image: url("https://i.imgs.ovh/2025/02/11/onCd.png");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+      .box {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .header {
+        color: black;
+        margin-top: 150px;
+        font-size: 3rem;
+        text-align: center;
+      }
+      #shuRuKuang1 {
+        border: 0;
+        border-bottom: 3px solid #f94b4b;
+        padding: 4px 2px;
+        display: block;
+        background: 0;
+        line-height: 1.5;
+        outline: none;
+        text-align: center;
+        transition: border-color 0.2s ease-in-out;
+        border-radius: 0;
+        color: black;
+        font-size: 2rem;
+        max-width: 90%;
+        margin-top: 80px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+      }
+      #shuRuKuang2 {
+        border: 0;
+        border-bottom: 3px solid #fff;
+        padding: 4px 2px;
+        display: block;
+        background: 0;
+        line-height: 1.5;
+        outline: none;
+        text-align: center;
+        transition: border-color 0.2s ease-in-out;
+        border-radius: 0;
+        color: black;
+        font-size: 2rem;
+        max-width: 90%;
+        margin-left: 20px;
+      }
+      #anNiu {
+        margin-top: 30px;
+        color: #000000;
+        border-radius: 80%;
+        height: 60px;
+        width: 60px;
+        text-align: center;
+        font-size: 2rem;
+        line-height: 30px;
+        cursor: pointer;
+        background-color: #e57b7b;
+      }
+      #linkContainer {
+        margin-top: 30px;
+        font-size: 1.3rem;
+      }
+      .flex {
+        display: flex;
+      }
+      #link {
+        display: none;
+        color: #000000;
+        text-decoration: none;
+        background-color: #e57b7b;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 1.3rem;
+        text-align: center;
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body class="box">
+    <!-- 标题 -->
+    <div class="flex">
+      <h1 class="header">情人节贺卡</h1>
+    </div>
+    <!-- 输入框一 -->
+    <div class="flex">
+      <input
+        placeholder="谁/什么身份"
+        id="shuRuKuang1"
+        style="border-bottom-color: transparent"
+      />
+    </div>
+    <!-- 输入框二 -->
+    <div class="flex">
+      <input
+        placeholder="有什么话要说"
+        id="shuRuKuang2"
+        style="border-bottom-color: transparent"
+      />
+    </div>
+    <!-- 确认按钮 -->
+    <div class="flex">
+      <button id="anNiu">✔</button>
+    </div>
+    <!-- 结果提示 -->
+    <p id="result"></p>
+    <!-- 贺卡地址链接 -->
+    <div id="linkContainer">
+      <a
+        id="link"
+        href="https://mypoems.github.io/ecard/ecard.html"
+        target="_blank"
+      >
+        快点这里吧
+      </a>
+    </div>
+    <script>
+      let shuRuKuang1 = document.getElementById("shuRuKuang1");
+      let shuRuKuang2 = document.getElementById("shuRuKuang2");
+      let anNiu = document.getElementById("anNiu");
+      let link = document.getElementById("link");
+      let result = document.getElementById("result");
+
+      let keywords1 = ["沈阳", "朋友"];
+      let keywords2 = ["情人节", "快乐", "开心", "喜欢", "爱"];
+
+      function checkInput1(input) {
+        let inputValue1 = input.value.trim(); // 去除首尾空格
+        let containsKeyword1 = keywords1.some(function (keyword1) {
+          return inputValue1.includes(keyword1);
+        });
+        return containsKeyword1;
+      }
+      function checkInput2(input) {
+        let inputValue2 = input.value.trim(); // 去除首尾空格
+        let containsKeyword2 = keywords2.some(function (keyword2) {
+          return inputValue2.includes(keyword2);
+        });
+        return containsKeyword2;
+      }
+
+      // 确认按钮的点击事件监听器
+      anNiu.addEventListener("click", function () {
+        let input1ContainsKeyword1 = checkInput1(shuRuKuang1);
+        let input2ContainsKeyword2 = checkInput2(shuRuKuang2);
+
+        if (input1ContainsKeyword1 && input2ContainsKeyword2) {
+          link.style.display = "block";
+          result.textContent = "恭喜你，回答正确。";
+        } else {
+          link.style.display = "none";
+          result.textContent = "回答错误捏，再想想吧。";
+        }
+      });
+    </script>
+  </body>
+</html>
